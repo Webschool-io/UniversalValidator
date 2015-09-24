@@ -14,6 +14,20 @@ var schema = {
 var Validator = require(universal-validator)(schema);
 ```
 
+Ou como serviço REST:
+
+
+```js
+var schema = {
+  nome: {type: String, default: "", required: true, validate: validaNome},
+  cpf: {type: String, default: "", required: true, validate: validaCPF},
+  email: {type: String, default: "", required: true, validate: validaEmail}
+};
+var Validator = require(universal-validator)(schema, 'http://api.universalvalidator.com/meu-user'); //mas tb pode ser um localhost da vida
+```
+
+Nesse caso cada validação é atômica e unitária, pois acontece para apenas aquele campo sem nenhum efeito colateral.
+
 Podemos utilizar eventos padrão como `beforeAction` e `afterAction`.
 
 ```js
@@ -27,30 +41,6 @@ Model.afterInsert = function() {
 
 Por exemplo no `beforeSave` o model chamará a função `validate()` com regras de negocio do modulo.
 
-alias achoq  antes as validações atomicas de cada campo
-tipo no mongoose
-a ideia eh criar um validador atomico
-q os testes sejam re-usaveis
-igual progração funcional
-q q c acha?
-ou eu sou mto louco?
-pq assim
-eu ja sei de cabeça varios testes q vc temq  fazer SEMPRE
-Itacir Pompeu
-2:42pm
-Itacir Pompeu
-pompeulimp@gmail.com
-Eu ta passei ja
+A ideia principal é criar pequenos testes que possam ser re-usáveis e automatizados por um módulo/serviço, o UniversalValidator, para que possa ser utilizado em qualquer sistema escrito em qualquer linguagem, deixando os testes padronizados quando se trabalha com equipes de linguagens diferentes.
 
-Nossa
-Show, net aki ta osso
-Jean Carlo Nascimento
-2:43pm
-Jean Carlo Nascimento
-tipo cada campo c vai validar todos tipos de entrada e só 1 retornar true
-função vc testa retorno
-do CRUD
-tipo a gente ja da os testes do CRUD
-automatizados
-pq nao tem pra q ficar criando isso sempre
-e por eventos eh mai loco
+## Automatização
