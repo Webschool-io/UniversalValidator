@@ -11,7 +11,7 @@ var schema = {
   cpf: {type: String, default: "", required: true, validate: validaCPF},
   email: {type: String, default: "", required: true, validate: validaEmail}
 };
-var Validator = require(universal-validator)(schema);
+var Validator = require('universal-validator')(schema);
 ```
 
 Ou como serviço REST:
@@ -23,7 +23,7 @@ var schema = {
   cpf: {type: String, default: "", required: true, validate: validaCPF},
   email: {type: String, default: "", required: true, validate: validaEmail}
 };
-var Validator = require(universal-validator)(schema, 'http://api.universalvalidator.com/meu-user'); //mas tb pode ser um localhost da vida
+var Validator = require('universal-validator')(schema, 'http://api.universalvalidator.com/meu-user'); //mas tb pode ser um localhost da vida
 ```
 
 Nesse caso cada validação é atômica e unitária, pois acontece para apenas aquele campo sem nenhum efeito colateral.
